@@ -130,7 +130,7 @@ and discussed at length by
 [Wood and Lenzen [-@Wood:2006]](https://doi.org/10.1016/j.enpol.2004.11.010).
 
 Given the $\mat{Z}$ matrix defined by the equation for $Z_{ij}$ above,
-a $\Delta \mat{v}$ vector is calculated by column sums of $\mat{Z}$
+a $\Delta \mat{V}$ vector is calculated by column sums of $\mat{Z}$
 
 \begin{equation} \label{eq:deltaV_eqn}
   \Delta \mat{V} = \rowvec{i} \mat{Z} \; ,
