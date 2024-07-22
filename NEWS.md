@@ -8,6 +8,7 @@ Cite all releases with doi [10.5281/zenodo.10449393](https://doi.org/10.5281/zen
 which always resolves to the latest release.
 
 
+* Fixed a documentation bug: **v** --> **V**.
 * Now running tests in parallel.
 * Upgrade to testthat v3.
 
