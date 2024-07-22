@@ -1,57 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/LMDIR.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/XGH.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Z_byname.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Zij.html</loc>
-  </url>
-  <url>
-    <loc>/reference/create0Tcolumns.html</loc>
-  </url>
-  <url>
-    <loc>/reference/create_simple_LMDI.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lmdi.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/quasi-quote-assign.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://matthewheun.github.io/LMDIR/404.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/LICENSE-text.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/LICENSE.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/articles/LMDIR.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/articles/index.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/authors.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/index.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/news/index.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/XGH.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/Z_byname.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/Zij.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/create0Tcolumns.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/create_simple_LMDI.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/data.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/index.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/lmdi.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/pipe.html</loc></url>
+<url><loc>https://matthewheun.github.io/LMDIR/reference/quasi-quote-assign.html</loc></url>
 </urlset>
+

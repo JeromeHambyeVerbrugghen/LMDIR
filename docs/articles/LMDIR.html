@@ -4,80 +4,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Use cases and examples for LMDIR • LMDIR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Use cases and examples for LMDIR">
-<meta property="og:description" content="LMDIR">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Use cases and examples for LMDIR">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">LMDIR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.14</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/LMDIR.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">LMDIR</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.14</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item"><a class="nav-link" href="../articles/LMDIR.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/MatthewHeun/LMDIR/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/MatthewHeun/LMDIR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Use cases and examples for LMDIR</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>Use cases and examples for LMDIR</h1>
                         <h4 data-toc-skip class="author">Matthew Kuperus
 Heun</h4>
             
-            <h4 data-toc-skip class="date">2024-01-01</h4>
+            <h4 data-toc-skip class="date">2024-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MatthewHeun/LMDIR/blob/HEAD/vignettes/LMDIR.Rmd" class="external-link"><code>vignettes/LMDIR.Rmd</code></a></small>
-      <div class="hidden name"><code>LMDIR.Rmd</code></div>
-
+      <div class="d-none name"><code>LMDIR.Rmd</code></div>
     </div>
 
     
@@ -115,82 +96,133 @@ Brockway <span class="citation">(2019)</span></a>.</p>
 <h2 id="description-of-the-matrix-method-for-lmdi-decomposition-analysis">Description of the matrix method for LMDI decomposition
 analysis<a class="anchor" aria-label="anchor" href="#description-of-the-matrix-method-for-lmdi-decomposition-analysis"></a>
 </h2>
-<p>The LMDI approach pioneered by <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al. <span class="citation">(1998)</span></a> and described in detail by <a href="https://doi.org/10.1016/s0306-2619(03)00043-6" class="external-link">Liu and Ang <span class="citation">(2003)</span></a> decomposes an energy aggregate (<span class="math inline">\(V\)</span>) by factors (<span class="math inline">\(x\)</span>) that cause <span class="math inline">\(V\)</span> to change over time. (In this vignette,
-we adopt the notation of <a href="https://doi.org/10.1016/j.enpol.2003.10.010" class="external-link">Ang <span class="citation">(2005)</span></a>.)</p>
+<p>The LMDI approach pioneered by <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al. <span class="citation">(1998)</span></a> and described in detail by <a href="https://doi.org/10.1016/s0306-2619(03)00043-6" class="external-link">Liu and Ang <span class="citation">(2003)</span></a> decomposes an energy aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
+by factors
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>)
+that cause
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+to change over time. (In this vignette, we adopt the notation of <a href="https://doi.org/10.1016/j.enpol.2003.10.010" class="external-link">Ang <span class="citation">(2005)</span></a>.)</p>
 <p>Noting that at a given time every combination of energy category
-(<span class="math inline">\(i\)</span>) and decomposition factor (<span class="math inline">\(j\)</span>) has an associated numerical value for
-the decomposition factor (<span class="math inline">\(x_{ij}\)</span>),
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>)
+and decomposition factor
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>)
+has an associated numerical value for the decomposition factor
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">x_{ij}</annotation></semantics></math>),
 the matrix approach to LMDI decomposition analysis begins with formation
-of an <span class="math inline">\(\mathbf{X}\)</span> matrix for each
-time of interest. Rows of <span class="math inline">\(\mathbf{X}\)</span> contain energy categories
-(indexed by <span class="math inline">\(i\)</span>) of the aggregate
-(<span class="math inline">\(V\)</span>) and columns of <span class="math inline">\(\mathbf{X}\)</span> contain decomposition factors
-(indexed by <span class="math inline">\(j\)</span>).</p>
-<p>Column vector <span class="math inline">\(\mathbf{v}\)</span>
-contains the value of each energy category (<span class="math inline">\(v_i\)</span>) and is formed from row products of
-<span class="math inline">\(\mathbf{X}\)</span>.</p>
-<p><span class="math display">\[\begin{equation} \label{eq:v}
+of an
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrix for each time of interest. Rows of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+contain energy categories (indexed by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>)
+of the aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
+and columns of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+contain decomposition factors (indexed by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>).</p>
+<p>Column vector
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐯</mi><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math>
+contains the value of each energy category
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>i</mi></msub><annotation encoding="application/x-tex">v_i</annotation></semantics></math>)
+and is formed from row products of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∏</mo><mi>j</mi></munder><msub><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:v}
   v_i = \prod_j x_{ij}
-\end{equation}\]</span></p>
-<p>At any given time, the energy aggregate (<span class="math inline">\(V\)</span>) is obtained by the column sum of
-elements in the <span class="math inline">\(\mathbf{v}\)</span>
+\end{equation}</annotation></semantics></math></p>
+<p>At any given time, the energy aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
+is obtained by the column sum of elements in the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐯</mi><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math>
 vector</p>
-<p><span class="math display">\[\begin{equation} \label{eq:V}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><msup><mi>𝐢</mi><mi mathvariant="normal">T</mi></msup><mi>𝐯</mi><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:V}
   V = \mathbf{i}^\mathrm{T} \mathbf{v} \; ,
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(\mathbf{i}\)</span> is a column
-vector of 1’s (an identity vector) of same size as <span class="math inline">\(\mathbf{v}\)</span>.</p>
-<p>Additive (<span class="math inline">\(\Delta V\)</span>) and
-multiplicative (<span class="math inline">\(D\)</span>) changes in the
-energy aggregate (<span class="math inline">\(V\)</span>) between two
-adjacent times, an initial time (superscript <span class="math inline">\(0\)</span>) and a later time (superscript <span class="math inline">\(T\)</span>), are calculated by</p>
-<p><span class="math display">\[\begin{equation} \label{eq:deltaV_def}
+\end{equation}</annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐢</mi><annotation encoding="application/x-tex">\mathbf{i}</annotation></semantics></math>
+is a column vector of 1’s (an identity vector) of same size as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐯</mi><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math>.</p>
+<p>Additive
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">\Delta V</annotation></semantics></math>)
+and multiplicative
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>)
+changes in the energy aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
+between two adjacent times, an initial time (superscript
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>)
+and a later time (superscript
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>),
+are calculated by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>V</mi><mo>=</mo><msup><mi>V</mi><mi>T</mi></msup><mo>−</mo><msup><mi>V</mi><mn>0</mn></msup><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:deltaV_def}
   \Delta V = V^T - V^0 \; ,
-\end{equation}\]</span></p>
+\end{equation}</annotation></semantics></math></p>
 <p>and</p>
-<p><span class="math display">\[\begin{equation} \label{eq:D_def}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mfrac><msup><mi>V</mi><mi>T</mi></msup><msup><mi>V</mi><mn>0</mn></msup></mfrac><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:D_def}
   D = \frac{V^T}{V^0} \; .
-\end{equation}\]</span></p>
-<p>A <span class="math inline">\(\mathbf{Z}\)</span> matrix is formed
-for two adjacent times by</p>
-<p><span class="math display">\[\begin{equation}
-\label{eq:Z_eqn_element_notation}
-  Z_{ij} = \frac{v_i^T - v_i^0}{\ln \left( \frac{v_i^T}{v_i^0}\right)}
+\end{equation}</annotation></semantics></math></p>
+<p>A
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>
+matrix is formed for two adjacent times by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Z</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mrow><msubsup><mi>v</mi><mi>i</mi><mi>T</mi></msubsup><mo>−</mo><msubsup><mi>v</mi><mi>i</mi><mn>0</mn></msubsup></mrow><mrow><mo>ln</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msubsup><mi>v</mi><mi>i</mi><mi>T</mi></msubsup><msubsup><mi>v</mi><mi>i</mi><mn>0</mn></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mo>ln</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msubsup><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow><mi>T</mi></msubsup><msubsup><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow><mn>0</mn></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:Z_eqn_element_notation}
+  Z_{ij} = \frac{v_i^T - v_i^0}{\ln \left( \frac{v_i^T}{v_i^0}\right)} 
             \ln \left( \frac{x_{ij}^T}{x_{ij}^0} \right) ,
-\end{equation}\]</span></p>
+\end{equation}</annotation></semantics></math></p>
 <p>with care taken to address the zero-value problem noted by <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al. <span class="citation">(1998)</span></a> in Table 2 and discussed at length by
 <a href="https://doi.org/10.1016/j.enpol.2004.11.010" class="external-link">Wood and Lenzen
 <span class="citation">(2006)</span></a>.</p>
-<p>Given the <span class="math inline">\(\mathbf{Z}\)</span> matrix
-defined by the equation for <span class="math inline">\(Z_{ij}\)</span>
-above, a <span class="math inline">\(\Delta \mathbf{v}\)</span> vector
-is calculated by column sums of <span class="math inline">\(\mathbf{Z}\)</span></p>
-<p><span class="math display">\[\begin{equation} \label{eq:deltaV_eqn}
+<p>Given the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>
+matrix defined by the equation for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Z</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">Z_{ij}</annotation></semantics></math>
+above, a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>𝐯</mi></mrow><annotation encoding="application/x-tex">\Delta \mathbf{v}</annotation></semantics></math>
+vector is calculated by column sums of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>𝐕</mi><mo>=</mo><msup><mi>𝐢</mi><mi mathvariant="normal">T</mi></msup><mi>𝐙</mi><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:deltaV_eqn}
   \Delta \mathbf{V} = \mathbf{i}^\mathrm{T} \mathbf{Z} \; ,
-\end{equation}\]</span></p>
-<p>where entries in <span class="math inline">\(\Delta
-\mathbf{V}\)</span> give the additive contribution of the <span class="math inline">\(j^\mathrm{th}\)</span> decomposition factor to
-changes in <span class="math inline">\(V\)</span> from time <span class="math inline">\(0\)</span> to time <span class="math inline">\(T\)</span>.</p>
-<p>Multiplicative decomposition is obtained with the <span class="math inline">\(\mathbf{D}\)</span> row vector calculated by</p>
-<p><span class="math display">\[\begin{equation} \label{eq:D_eqn}
-  D_j = \exp \left( \frac{\Delta V_j}{\frac{V^T - V^0}{\ln
-\frac{V^T}{V^0}}} \right) \; ,
-\end{equation}\]</span></p>
-<p>where entries in <span class="math inline">\(\mathbf{D}\)</span> give
-the multiplicative contribution of the <span class="math inline">\(j^\mathrm{th}\)</span> decomposition factor to
-changes in <span class="math inline">\(V\)</span> from time <span class="math inline">\(0\)</span> to time <span class="math inline">\(T\)</span>.</p>
+\end{equation}</annotation></semantics></math></p>
+<p>where entries in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>𝐕</mi></mrow><annotation encoding="application/x-tex">\Delta \mathbf{V}</annotation></semantics></math>
+give the additive contribution of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>j</mi><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow></msup><annotation encoding="application/x-tex">j^\mathrm{th}</annotation></semantics></math>
+decomposition factor to changes in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+from time
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+to time
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>.</p>
+<p>Multiplicative decomposition is obtained with the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐃</mi><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math>
+row vector calculated by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>j</mi></msub><mo>=</mo><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>Δ</mi><msub><mi>V</mi><mi>j</mi></msub></mrow><mfrac><mrow><msup><mi>V</mi><mi>T</mi></msup><mo>−</mo><msup><mi>V</mi><mn>0</mn></msup></mrow><mrow><mo>ln</mo><mfrac><msup><mi>V</mi><mi>T</mi></msup><msup><mi>V</mi><mn>0</mn></msup></mfrac></mrow></mfrac></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:D_eqn}
+  D_j = \exp \left( \frac{\Delta V_j}{\frac{V^T - V^0}{\ln \frac{V^T}{V^0}}} \right) \; ,
+\end{equation}</annotation></semantics></math></p>
+<p>where entries in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐃</mi><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math>
+give the multiplicative contribution of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>j</mi><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow></msup><annotation encoding="application/x-tex">j^\mathrm{th}</annotation></semantics></math>
+decomposition factor to changes in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+from time
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+to time
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>.</p>
 <p>Verification can be performed by</p>
-<p><span class="math display">\[\begin{equation} \label{eq:deltaV_check}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>𝐕</mi><mi>𝐢</mi><mover><mo>=</mo><mo accent="false">?</mo></mover><msup><mi>V</mi><mi>T</mi></msup><mo>−</mo><msup><mi>V</mi><mn>0</mn></msup><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:deltaV_check}
    \Delta \mathbf{V} \mathbf{i} \overset{?}{=} V^T - V^0 \; ,
-\end{equation}\]</span></p>
+\end{equation}</annotation></semantics></math></p>
 <p>and</p>
-<p><span class="math display">\[\begin{equation} \label{eq:D_check}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>∏</mo><mi>j</mi></munder><msub><mi>D</mi><mi>j</mi></msub><mover><mo>=</mo><mo accent="false">?</mo></mover><mfrac><msup><mi>V</mi><mi>T</mi></msup><msup><mi>V</mi><mn>0</mn></msup></mfrac><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:D_check}
    \prod_j D_j \overset{?}{=} \frac{V^T}{V^0}\; .
-\end{equation}\]</span></p>
-<p>Cumulative changes in <span class="math inline">\(V\)</span> over
-many time periods can be calculated by cumulative sums of the <span class="math inline">\(\Delta \mathbf{V}\)</span> row vector for additive
-decomposition and by cumulative products of the <span class="math inline">\(\mathbf{D}\)</span> row vector for multiplicative
-decomposition.</p>
+\end{equation}</annotation></semantics></math></p>
+<p>Cumulative changes in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+over many time periods can be calculated by cumulative sums of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>𝐕</mi></mrow><annotation encoding="application/x-tex">\Delta \mathbf{V}</annotation></semantics></math>
+row vector for additive decomposition and by cumulative products of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐃</mi><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math>
+row vector for multiplicative decomposition.</p>
 </div>
 <div class="section level2">
 <h2 id="application-of-the-matrix-method-to-energy-conversion-chain-ecc-analysis">Application of the matrix method to energy conversion chain (ECC)
@@ -203,9 +235,16 @@ comprises primary, final, and useful energy and exergy flowing through
 society.</p>
 <p>Following <a href="https://doi.org/10.1016/j.apenergy.2015.05.082" class="external-link">Brockway et al.
 <span class="citation">(2015)</span></a>, one energy aggregate from an
-ECC is total useful exergy supplied to the economy (<span class="math inline">\(X_u\)</span>). <span class="math inline">\(X_u\)</span> is comprised of subcategories (<span class="math inline">\(sc\)</span>, Heat, Electric, Mechanical Drive
-(Petroleum), and Muscle Work) and subsubcategories (<span class="math inline">\(ssc\)</span>, such as KE–Fans and MD–Tractors).
-The decomposition factors are given in the following table.</p>
+ECC is total useful exergy supplied to the economy
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>u</mi></msub><annotation encoding="application/x-tex">X_u</annotation></semantics></math>).
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>u</mi></msub><annotation encoding="application/x-tex">X_u</annotation></semantics></math>
+is comprised of subcategories
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">sc</annotation></semantics></math>,
+Heat, Electric, Mechanical Drive (Petroleum), and Muscle Work) and
+subsubcategories
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ssc</annotation></semantics></math>,
+such as KE–Fans and MD–Tractors). The decomposition factors are given in
+the following table.</p>
 <table class="table">
 <colgroup>
 <col width="10%">
@@ -217,39 +256,49 @@ The decomposition factors are given in the following table.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right"><span class="math inline">\(X_p\)</span></td>
+<td align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>p</mi></msub><annotation encoding="application/x-tex">X_p</annotation></semantics></math></td>
 <td align="left">Total primary exergy supplied to the economy</td>
 </tr>
 <tr class="even">
-<td align="right"><span class="math inline">\(\phi_{p,sc}\)</span></td>
-<td align="left">Allocation ratio of primary exergy (<span class="math inline">\(p\)</span>) to subcategory (<span class="math inline">\(sc\)</span>) (Heat, Electric, Mechanical drive,
-Muscle work)</td>
+<td align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{p,sc}</annotation></semantics></math></td>
+<td align="left">Allocation ratio of primary exergy
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>)
+to subcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">sc</annotation></semantics></math>)
+(Heat, Electric, Mechanical drive, Muscle work)</td>
 </tr>
 <tr class="odd">
-<td align="right"><span class="math inline">\(\phi_{sc,ssc}\)</span></td>
-<td align="left">Allocation ratio of exergy from subcategory (<span class="math inline">\(sc)\)</span> to subsubcategory (<span class="math inline">\(ssc\)</span>) (MD - Diesel trains, Electric
-lights, etc.)</td>
+<td align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>s</mi><mi>c</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{sc,ssc}</annotation></semantics></math></td>
+<td align="left">Allocation ratio of exergy from subcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">sc)</annotation></semantics></math>
+to subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ssc</annotation></semantics></math>)
+(MD - Diesel trains, Electric lights, etc.)</td>
 </tr>
 <tr class="even">
-<td align="right"><span class="math inline">\(\eta_{ssc}\)</span></td>
+<td align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\eta_{ssc}</annotation></semantics></math></td>
 <td align="left">Primary-to-useful thermodynamic efficiency of
-subsubcategory (<span class="math inline">\(ssc\)</span>)</td>
+subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ssc</annotation></semantics></math>)</td>
 </tr>
 </tbody>
 </table>
-<p>In equation form, the energy aggregate (<span class="math inline">\(X_u\)</span>) is calculated by</p>
-<p><span class="math display">\[\begin{equation} \label{eq:X_u_eqn}
+<p>In equation form, the energy aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>u</mi></msub><annotation encoding="application/x-tex">X_u</annotation></semantics></math>)
+is calculated by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>u</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></munder><msub><mi>X</mi><mrow><mi>u</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><mspace width="0.278em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:X_u_eqn}
   X_u = \sum_{ssc} X_{u,ssc} \; ,
-\end{equation}\]</span></p>
+\end{equation}</annotation></semantics></math></p>
 <p>and</p>
-<p><span class="math display">\[\begin{equation} \label{eq:X_u_i_eqn}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mrow><mi>u</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><msub><mi>ϕ</mi><mrow><mi>s</mi><mi>c</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><mfrac><msub><mi>X</mi><mrow><mi>s</mi><mi>c</mi></mrow></msub><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub></mfrac><mfrac><msub><mi>X</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><msub><mi>X</mi><mrow><mi>s</mi><mi>c</mi></mrow></msub></mfrac><mfrac><msub><mi>X</mi><mrow><mi>u</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub></mfrac><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation} \label{eq:X_u_i_eqn}
   X_{u,ssc} = X_{p,tot} \phi_{p,sc} \phi_{sc,ssc} \eta_{ssc}
-      = X_{p,tot} \frac{X_{sc}}{X_{p,tot}} \frac{X_{ssc}}{X_{sc}}
-\frac{X_{u,ssc}}{X_{p,ssc}} \; .
-\end{equation}\]</span></p>
-<p>Note that <span class="math inline">\(X_{p,ssc}\)</span> is the
-embodied primary exergy of the useful exergy produced by the
-subsubcategory (<span class="math inline">\(X_{u,ssc}\)</span>).</p>
+      = X_{p,tot} \frac{X_{sc}}{X_{p,tot}} \frac{X_{ssc}}{X_{sc}} \frac{X_{u,ssc}}{X_{p,ssc}} \; .
+\end{equation}</annotation></semantics></math></p>
+<p>Note that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">X_{p,ssc}</annotation></semantics></math>
+is the embodied primary exergy of the useful exergy produced by the
+subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mrow><mi>u</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">X_{u,ssc}</annotation></semantics></math>).</p>
 </div>
 <div class="section level2">
 <h2 id="simple-example">Simple example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
@@ -258,7 +307,8 @@ subsubcategory (<span class="math inline">\(X_{u,ssc}\)</span>).</p>
 begin with a simple example that is small enough to allow replication of
 the results by hand calculations if desired<br>
 but sufficient detail to illustrate features of the calculations.</p>
-<p>A data frame of <span class="math inline">\(\mathbf{X}\)</span>
+<p>A data frame of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
 matrices is the starting point for a simple example. The example has two
 fictitious countries (<code>AB</code> and <code>YZ</code>) and covers
 four years (1971–1974). Countries <code>AB</code> and <code>YZ</code>
@@ -266,7 +316,7 @@ are identical for the purposes of illustration.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MatthewHeun/LMDIR" class="external-link">LMDIR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://matthewheun.github.io/LMDIR">LMDIR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MatthewHeun/matsbyname" class="external-link">matsbyname</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MatthewHeun/matsindf" class="external-link">matsindf</a></span><span class="op">)</span></span>
@@ -285,9 +335,14 @@ are identical for the purposes of illustration.</p>
 <p>For the remainder of these examples, only the first four rows will be
 shown. (Rows 5–8 for country <code>YZ</code> are the same as rows 1–4
 for country <code>AB</code>.)</p>
-<p>The <code>X</code> column of the data frame contains <span class="math inline">\(\mathbf{X}\)</span> matrices. The <span class="math inline">\(\mathbf{X}\)</span> matrices contain all the
-information about energy categories and factors. The <span class="math inline">\(\mathbf{X}\)</span> matrices are all that is
-needed to perform the LMDI analysis.</p>
+<p>The <code>X</code> column of the data frame contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrices. The
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrices contain all the information about energy categories and
+factors. The
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrices are all that is needed to perform the LMDI analysis.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DF</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">X</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -355,13 +410,15 @@ additional columns.</p>
 <span><span class="co">#&gt; $ D_cum      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;&lt;matrix[3 x 1]&gt;&gt;, &lt;&lt;matrix[3 x 1]&gt;&gt;, &lt;&lt;matrix[3 x 1]&gt;&gt;, &lt;…</span></span></code></pre></div>
 <p>Each additional column provides results of the LMDI analysis. Both
 additive and multiplicative results are provided.</p>
-<p>The <code>V</code> column contains aggregates (<span class="math inline">\(V\)</span>), with the first year assigned a value
-of <code>0</code>.</p>
+<p>The <code>V</code> column contains aggregates
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>),
+with the first year assigned a value of <code>0</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">$</span><span class="va">V</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  80 180 239 338  80 180 239 338</span></span></code></pre></div>
-<p>The <code>Z</code> column contains <span class="math inline">\(\mathbf{Z}\)</span> matrices, with the first year
-assigned a value of <code>1</code>.</p>
+<p>The <code>Z</code> column contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>
+matrices, with the first year assigned a value of <code>1</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">Z</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -399,9 +456,12 @@ assigned a value of <code>1</code>.</p>
 <span><span class="co">#&gt; [1] "subsubcat"</span></span>
 <span><span class="co">#&gt; attr(,"coltype")</span></span>
 <span><span class="co">#&gt; [1] "factor"</span></span></code></pre></div>
-<p>Note that calculating the entries in the <span class="math inline">\(\mathbf{Z}\)</span> matrices requires evaluating 8
-degenerate cases as shown in Table 2, p. 492 of <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al. <span class="citation">(1998)</span></a>. Evaluation of the 8 degenerate cases
-is performed by the <code><a href="../reference/Zij.html">Zij()</a></code> function.</p>
+<p>Note that calculating the entries in the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>
+matrices requires evaluating 8 degenerate cases as shown in Table 2,
+p. 492 of <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et
+al. <span class="citation">(1998)</span></a>. Evaluation of the 8
+degenerate cases is performed by the <code><a href="../reference/Zij.html">Zij()</a></code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Zij</span></span>
 <span><span class="co">#&gt; function(i = NULL, j = NULL, X_0 = NULL, X_T = NULL,</span></span>
@@ -453,19 +513,23 @@ is performed by the <code><a href="../reference/Zij.html">Zij()</a></code> funct
 <span><span class="co">#&gt;   # We should never get here.</span></span>
 <span><span class="co">#&gt;   stop("Unknown conditions for v_0i1, v_Ti1, X_0ij, and X_Tij in Zij")</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x105e04aa0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x149166490&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:LMDIR&gt;</span></span></code></pre></div>
 <p>The <code>dV_agg</code> column contains year-to-year differences in
-the aggregate (<span class="math inline">\(V\)</span>).</p>
+the aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">dV_agg</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]   0 100  59  99</span></span></code></pre></div>
 <p>The <code>D_agg</code> column contains year-to-year ratios of the
-aggregate (<span class="math inline">\(V\)</span>).</p>
+aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">$</span><span class="va">D_agg</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.000000 2.250000 1.327778 1.414226 1.000000 2.250000 1.327778 1.414226</span></span></code></pre></div>
-<p>The <code>dV</code> column contains <span class="math inline">\(\mathbf{\Delta V}\)</span> vectors.</p>
+<p>The <code>dV</code> column contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚫</mi><mi>𝐕</mi></mrow><annotation encoding="application/x-tex">\mathbf{\Delta V}</annotation></semantics></math>
+vectors.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">dV</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -507,7 +571,9 @@ aggregate (<span class="math inline">\(V\)</span>).</p>
 <span><span class="co">#&gt; [1] "factor"</span></span>
 <span><span class="co">#&gt; attr(,"coltype")</span></span>
 <span><span class="co">#&gt; [1] "subsubcat"</span></span></code></pre></div>
-<p>The <code>D</code> column contains <span class="math inline">\(\mathbf{D}\)</span> vectors.</p>
+<p>The <code>D</code> column contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐃</mi><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math>
+vectors.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">D</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -551,20 +617,23 @@ aggregate (<span class="math inline">\(V\)</span>).</p>
 <span><span class="co">#&gt; [1] "subsubcat"</span></span></code></pre></div>
 <p>The remaining columns have the <code>_cum</code> suffix and represent
 cumulative values. The <code>dV_agg_cum</code> column gives cumulative
-differences in the aggregate (<span class="math inline">\(V\)</span>)
+differences in the aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
 relative to the first time.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">$</span><span class="va">dV_agg_cum</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]   0 100 159 258   0 100 159 258</span></span></code></pre></div>
 <p>The <code>D_agg_cum</code> column gives cumulative ratios of the
-aggregate (<span class="math inline">\(V\)</span>) relative to the first
-time.</p>
+aggregate
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)
+relative to the first time.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">$</span><span class="va">D_agg_cum</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.0000 2.2500 2.9875 4.2250 1.0000 2.2500 2.9875 4.2250</span></span></code></pre></div>
 <p>The <code>dV_cum</code> column gives the cumulative differences in
-the <span class="math inline">\(\mathbf{\Delta V}\)</span> vectors
-relative to the first time.</p>
+the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚫</mi><mi>𝐕</mi></mrow><annotation encoding="application/x-tex">\mathbf{\Delta V}</annotation></semantics></math>
+vectors relative to the first time.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">dV_cum</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -607,8 +676,8 @@ relative to the first time.</p>
 <span><span class="co">#&gt; attr(,"coltype")</span></span>
 <span><span class="co">#&gt; [1] "subsubcat"</span></span></code></pre></div>
 <p>The <code>D_cum</code> column gives the cumulative ratios of the
-<span class="math inline">\(\mathbf{D}\)</span> vectors relative to the
-first time.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐃</mi><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math>
+vectors relative to the first time.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span><span class="op">$</span><span class="va">D_cum</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -662,9 +731,10 @@ chain. This analysis also serves to demonstrate the use of the LMDIR
 package with data from a real energy conversion chain.</p>
 <p>We’ll use data from <a href="https://doi.org/10.1016/j.apenergy.2019.01.255" class="external-link">Heun and Brockway
 <span class="citation">(2019)</span></a> for exergy flows through
-Ghanaian society. The data frame consists of annual <span class="math inline">\(\mathbf{X}\)</span> matrices for Ghana over the
-period 1971–2013. This data frame is available as
-<code><a href="../reference/XGH.html">LMDIR::XGH</a></code>.</p>
+Ghanaian society. The data frame consists of annual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrices for Ghana over the period 1971–2013. This data frame is
+available as <code><a href="../reference/XGH.html">LMDIR::XGH</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">XGH</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 43</span></span>
@@ -672,9 +742,10 @@ period 1971–2013. This data frame is available as
 <span><span class="co">#&gt; $ Country <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GH", "GH", "GH", "GH", "GH", "GH", "GH", "GH", "GH", "GH", "G…</span></span>
 <span><span class="co">#&gt; $ Year    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 19…</span></span>
 <span><span class="co">#&gt; $ X       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;&lt;matrix[22 x 4]&gt;&gt;, &lt;&lt;matrix[22 x 4]&gt;&gt;, &lt;&lt;matrix[22 x 4]&gt;&gt;, &lt;…</span></span></code></pre></div>
-<p>Each <span class="math inline">\(\mathbf{X}\)</span> matrix contains
-useful exergy subsubcategories (in rows) and factors (in columns) as
-shown below for Ghana for 2003 and 2004.</p>
+<p>Each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math>
+matrix contains useful exergy subsubcategories (in rows) and factors (in
+columns) as shown below for Ghana for 2003 and 2004.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prettifyXZ</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">XZ</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">XZ</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -766,15 +837,18 @@ shown below for Ghana for 2003 and 2004.</p>
 <span><span class="co">#&gt; attr(,"coltype")</span></span>
 <span><span class="co">#&gt; [1] "factor"</span></span></code></pre></div>
 <p>Note that row and column ordering is provided for readability. The
-ordered rows show identical values of <span class="math inline">\(\phi_i\)</span> for allocation to the
-subcategories of Heat, Electricity, Mechanical drive (fueled by
-petroleum), and Muscle work (fueled by food and feed). Column order
-follows flows of energy and exergy through the economy, from primary
-stage to allocation to subcategories through allocation to
+ordered rows show identical values of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\phi_i</annotation></semantics></math>
+for allocation to the subcategories of Heat, Electricity, Mechanical
+drive (fueled by petroleum), and Muscle work (fueled by food and feed).
+Column order follows flows of energy and exergy through the economy,
+from primary stage to allocation to subcategories through allocation to
 subsubcategories and, finally, to a primary-to-useful efficiency for
-each task. All unique <span class="math inline">\(\phi_i\)</span> values
-sum to 1. (Specifically for 2003, 0.519 + 0.081 + 0.188 + 0.212 = 1.)
-Within each subcategory, <span class="math inline">\(\phi_{ij}\)</span>
+each task. All unique
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\phi_i</annotation></semantics></math>
+values sum to 1. (Specifically for 2003, 0.519 + 0.081 + 0.188 + 0.212 =
+1.) Within each subcategory,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{ij}</annotation></semantics></math>
 values sum to 1. (E.g., for Mechanical drive fueled by food and feed,
 0.789 + 0.211 = 1)</p>
 <div class="section level3">
@@ -811,29 +885,41 @@ this case, only <code>Country</code>).</p>
 below.)</p>
 </div>
 <div class="section level3">
-<h3 id="a-note-about-special-cases-for-calculating-entires-in-mathbfz">A note about special cases for calculating entires in <span class="math inline">\(\mathbf{Z}\)</span><a class="anchor" aria-label="anchor" href="#a-note-about-special-cases-for-calculating-entires-in-mathbfz"></a>
+<h3 id="a-note-about-special-cases-for-calculating-entires-in-mathbfz">A note about special cases for calculating entires in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math><a class="anchor" aria-label="anchor" href="#a-note-about-special-cases-for-calculating-entires-in-mathbfz"></a>
 </h3>
 <p>When a category of useful exergy is present in one year but absent in
-an adjacent year, the corresponding row in <span class="math inline">\(\mathbf{X}^0\)</span> or <span class="math inline">\(\mathbf{X}^T\)</span> is missing compared to the
-other. That happened in Ghana between 2003 and 2004; in 2003, VALCO’s
-aluminum smelters were operating, but in 2004 they were not. Thus, we
-treat the <code>HTH.600.C - Electric heaters</code> row specially in
-2004.</p>
+an adjacent year, the corresponding row in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝐗</mi><mn>0</mn></msup><annotation encoding="application/x-tex">\mathbf{X}^0</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝐗</mi><mi>T</mi></msup><annotation encoding="application/x-tex">\mathbf{X}^T</annotation></semantics></math>
+is missing compared to the other. That happened in Ghana between 2003
+and 2004; in 2003, VALCO’s aluminum smelters were operating, but in 2004
+they were not. Thus, we treat the
+<code>HTH.600.C - Electric heaters</code> row specially in 2004.</p>
 <p>For 2004, we insert a row for
 <code>HTH.600.C - Electric Heaters</code> and fill it with positive
-numbers for primary exergy (<span class="math inline">\(X_{p,tot}\)</span> or <code>EXp,ktoe</code>),
-allocation from primary exergy to subcategory (<span class="math inline">\(\phi_{p,sc}\)</span> or <code>phi_i</code>), and
-thermodynamic efficiency (<span class="math inline">\(\eta_{ssc}\)</span> or <code>eta_ij</code>). (The
-fill values are irrelevant to the calculated result, so long as they are
-positive numbers.) We set the allocation from subcategory to
-subsubcategory (<span class="math inline">\(\phi_{sc,ssc}\)</span> or
-<code>phi_ij</code>) to <code>0</code>. This approach reflects the
+numbers for primary exergy
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">X_{p,tot}</annotation></semantics></math>
+or <code>EXp,ktoe</code>), allocation from primary exergy to subcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{p,sc}</annotation></semantics></math>
+or <code>phi_i</code>), and thermodynamic efficiency
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\eta_{ssc}</annotation></semantics></math>
+or <code>eta_ij</code>). (The fill values are irrelevant to the
+calculated result, so long as they are positive numbers.) We set the
+allocation from subcategory to subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>s</mi><mi>c</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{sc,ssc}</annotation></semantics></math>
+or <code>phi_ij</code>) to <code>0</code>. This approach reflects the
 reality that despite the fact that there is no useful exergy of this
-type in 2004, we still have total primary exergy (<span class="math inline">\(X_{p,tot}\)</span>), there is still an allocation
-of primary exergy to the subcategory <code>Heat</code> (<span class="math inline">\(\phi_{p,sc} \neq 0\)</span>), and if there were
-electric heaters making <code>HTH.600.C - Electric heaters</code> in
-this year, they would have done so with a non-zero thermodynamic
-efficiency (<span class="math inline">\(\eta_{ssc}\)</span>).</p>
+type in 2004, we still have total primary exergy
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">X_{p,tot}</annotation></semantics></math>),
+there is still an allocation of primary exergy to the subcategory
+<code>Heat</code>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\phi_{p,sc} \neq 0</annotation></semantics></math>),
+and if there were electric heaters making
+<code>HTH.600.C - Electric heaters</code> in this year, they would have
+done so with a non-zero thermodynamic efficiency
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\eta_{ssc}</annotation></semantics></math>).</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">XGH</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Year</span> <span class="op">==</span> <span class="fl">2004</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -867,9 +953,14 @@ efficiency (<span class="math inline">\(\eta_{ssc}\)</span>).</p>
 <span><span class="co">#&gt; [1] "category"</span></span>
 <span><span class="co">#&gt; attr(,"coltype")</span></span>
 <span><span class="co">#&gt; [1] "factor"</span></span></code></pre></div>
-<p><code>fillrowX</code> triggers special calculation of <span class="math inline">\(\mathbf{Z}\)</span> values for 2004. When<br><span class="math inline">\(X_{p,tot} &gt; 0\)</span>, <span class="math inline">\(\phi_{p,sc} &gt; 0\)</span>, <span class="math inline">\(\eta_{ssc} &gt; 0\)</span>, and <span class="math inline">\(\phi_{sc,ssc} = 0\)</span>, we employ Table 2, Row
-2 of <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al.
-<span class="citation">(1998)</span></a> to calculate
+<p><code>fillrowX</code> triggers special calculation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>
+values for 2004. When<br><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mrow><mi>p</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">X_{p,tot} &gt; 0</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\phi_{p,sc} &gt; 0</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\eta_{ssc} &gt; 0</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi><mrow><mi>s</mi><mi>c</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\phi_{sc,ssc} = 0</annotation></semantics></math>,
+we employ Table 2, Row 2 of <a href="https://doi.org/10.1016/s0360-5442(98)00016-4" class="external-link">Ang et al. <span class="citation">(1998)</span></a> to calculate
 <code>Z[HTH.600.C - Electric heaters, phi_ij] = -6.416</code>, as shown
 below. The other values on the row are <code>0.0</code>. (If this
 example were switched in time such that the smelters were not used in
@@ -961,29 +1052,38 @@ according to the table below.</p>
 <tr class="even">
 <td align="right">D<sub>ex</sub>
 </td>
-<td align="center"><span class="math inline">\(X_p\)</span></td>
+<td align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>p</mi></msub><annotation encoding="application/x-tex">X_p</annotation></semantics></math></td>
 <td align="left">Primary exergy supplied to the economy</td>
 </tr>
 <tr class="odd">
 <td align="right">D<sub>str</sub>
 </td>
-<td align="center"><span class="math inline">\(\phi_{p,sc}\)</span></td>
-<td align="left">Allocation of primary exergy (<span class="math inline">\(p\)</span>) to subcategory (<span class="math inline">\(sc\)</span>) (Heat, Electric, Mechanical drive,
-Muscle work) or main class structural change</td>
+<td align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>p</mi><mo>,</mo><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{p,sc}</annotation></semantics></math></td>
+<td align="left">Allocation of primary exergy
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>)
+to subcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">sc</annotation></semantics></math>)
+(Heat, Electric, Mechanical drive, Muscle work) or main class structural
+change</td>
 </tr>
 <tr class="even">
 <td align="right">D<sub>eff</sub>
 </td>
-<td align="center"><span class="math inline">\(\eta_{ssc}\)</span></td>
+<td align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>η</mi><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\eta_{ssc}</annotation></semantics></math></td>
 <td align="left">Primary-to-useful thermodynamic efficiency of
-subsubcategory (<span class="math inline">\(ssc\)</span>)</td>
+subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ssc</annotation></semantics></math>)</td>
 </tr>
 <tr class="odd">
 <td align="right">D<sub>dil</sub>
 </td>
-<td align="center"><span class="math inline">\(\phi_{sc,ssc}\)</span></td>
-<td align="left">Allocation ratio of exergy from subcategory (<span class="math inline">\(sc)\)</span> to subsubcategory (<span class="math inline">\(ssc\)</span>) (MD - Diesel trains, Electric
-lights, etc.) or subclass structural change</td>
+<td align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mrow><mi>s</mi><mi>c</mi><mo>,</mo><mi>s</mi><mi>s</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\phi_{sc,ssc}</annotation></semantics></math></td>
+<td align="left">Allocation ratio of exergy from subcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">sc)</annotation></semantics></math>
+to subsubcategory
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>s</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ssc</annotation></semantics></math>)
+(MD - Diesel trains, Electric lights, etc.) or subclass structural
+change</td>
 </tr>
 </tbody>
 </table>
@@ -1023,8 +1123,14 @@ graph.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> GH       <span style="text-decoration: underline;">1</span>972 1.05  D_ex  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> GH       <span style="text-decoration: underline;">1</span>972 1.01  D_str </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> GH       <span style="text-decoration: underline;">1</span>972 1.03  D_dil</span></span></code></pre></div>
-<p>Finally, we create a graph showing both the total changes (<span class="math inline">\(D_{tot}\)</span>) and the multiplicative factors
-that comprise the total change (<span class="math inline">\(D_{ex}\)</span>, <span class="math inline">\(D_{str}\)</span>, <span class="math inline">\(D_{eff}\)</span>, and <span class="math inline">\(D_{dil}\)</span>).</p>
+<p>Finally, we create a graph showing both the total changes
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">D_{tot}</annotation></semantics></math>)
+and the multiplicative factors that comprise the total change
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mrow><mi>e</mi><mi>x</mi></mrow></msub><annotation encoding="application/x-tex">D_{ex}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mrow><mi>s</mi><mi>t</mi><mi>r</mi></mrow></msub><annotation encoding="application/x-tex">D_{str}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mrow><mi>e</mi><mi>f</mi><mi>f</mi></mrow></msub><annotation encoding="application/x-tex">D_{eff}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mrow><mi>d</mi><mi>i</mi><mi>l</mi></mrow></msub><annotation encoding="application/x-tex">D_{dil}</annotation></semantics></math>).</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GHlmdi_forgraphing</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">value</span>, linetype <span class="op">=</span> <span class="va">Factor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -1054,7 +1160,7 @@ matrices.</p>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-Ang:2005" class="csl-entry">
 Ang, B. W. 2005. <span>“The <span>LMDI</span> Approach to Decomposition
 Analysis: A Practical Guide.”</span> <em>Energy Policy</em> 33: 867–71.
@@ -1094,35 +1200,26 @@ the Logarithmic Mean Divisia Index Decomposition Method.”</span>
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Matthew Heun.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Matthew Heun.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>

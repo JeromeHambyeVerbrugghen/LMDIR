@@ -27,3 +27,4 @@ vignettes/*.pdf
 .Rproj.user
 # Temporary files created by Excel
 ~*.xlsx
+docs

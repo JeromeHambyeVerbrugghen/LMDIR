@@ -11,3 +11,5 @@
 ^\.travis\.yml$
 ^\.github$
 ^LICENSE\.md$
+^_pkgdown\.yml$
+^pkgdown$

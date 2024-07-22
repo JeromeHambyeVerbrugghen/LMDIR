@@ -1,0 +1,4 @@
+url: https://matthewheun.github.io/LMDIR/
+template:
+  bootstrap: 5
+  bootswatch: simplex
