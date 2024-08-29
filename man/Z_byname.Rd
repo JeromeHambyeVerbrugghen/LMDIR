@@ -15,7 +15,7 @@ Z_byname(X_0, X_T, fillrow = NULL)
 to \code{X_0} and \code{X_T}. (See details.)}
 }
 \value{
-A \code{Z} matrix.
+A \code{Z} list of matrices for LMDI-I and LMDI-II weights.
 }
 \description{
 The formula for \code{Z} is

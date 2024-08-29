@@ -9,6 +9,10 @@ Zij(
   j = NULL,
   X_0 = NULL,
   X_T = NULL,
+  v_0 = matsbyname::rowprods_byname(X_0)[, 1],
+  v_T = matsbyname::rowprods_byname(X_T)[, 1],
+  V_0 = matsbyname::colsums_byname(matsbyname::rowprods_byname(X_0))[, 1],
+  V_T = matsbyname::colsums_byname(matsbyname::rowprods_byname(X_T))[, 1],
   v_0i1 = matsbyname::rowprods_byname(X_0)[i, 1],
   v_Ti1 = matsbyname::rowprods_byname(X_T)[i, 1],
   X_0ij = X_0[i, j],
@@ -24,16 +28,26 @@ Zij(
 
 \item{X_T}{optional sub-sector by factor matrix for time T.}
 
-\item{v_0i1}{the i,1th element of the \code{v_0} column vector. (v_0 is formed from the row products of the \code{X_0} matrix.)}
+\item{v_0}{the column vector formed from the row products of the \code{X_0} matrix.}
 
-\item{v_Ti1}{the i,1th element of the \code{v_T} column vector. (v_T is formed from the row products of the \code{X_T} matrix.)}
+\item{v_T}{the column vector formed from the row products of the \code{X_T} matrix.}
+
+\item{V_0}{the column sum of the \code{v_0} column vector.}
+
+\item{V_T}{the column sum of the \code{v_T} column vector.}
+
+\item{v_0i1}{the i,1th element of the \code{v_0} column vector.}
+
+\item{v_Ti1}{the i,1th element of the \code{v_T} column vector.}
 
 \item{X_0ij}{the i,jth element of the \code{X_0} matrix}
 
 \item{X_Tij}{the i,jth element of the \code{X_T} matrix}
 }
 \value{
-the Z value corresponding to the \code{v_0i1}, \code{v_Ti1}, \code{X_0ij}, and \code{X_Tij} values
+the \code{Z_I_ij} the LMDI-I value corresponding to the \code{v_0i1}, \code{v_Ti1}, \code{X_0ij}, and \code{X_Tij} values and the
+\code{Z_II_ij} the LMDI-II Z value corresponding to the \code{v_0}, \code{v_T}, \code{V_0}, \code{V_T}, \code{v_0i1}, \code{v_Ti1}, \code{X_0ij}, and
+\code{V_Tij} values for row \code{i} and column \code{j}.
 }
 \description{
 There are many special cases for calculating the \verb{i,j}th term in \code{Z}.
@@ -48,6 +62,6 @@ Note that \code{i} and \code{j} must be positive and less than or equal to
 \details{
 Arguments \code{i}, \code{j}, \code{X_0}, and \code{X_T} are optional.
 If they are not specified,
-arguments \code{v_0i1}, \code{v_Ti1}, \code{X_0ij}, and \code{X_Tij}
+arguments \code{v_0}, \code{v_T}, \code{V_0}, \code{V_T}, \code{v_0i1}, \code{v_Ti1}, \code{X_0ij}, and \code{X_Tij}
 must be given.
 }

@@ -14,32 +14,41 @@ test_that("Zij works as expected", {
   # Energy, 23(6):489–495, Jun 1998.
   #
   # Case 1
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = ANS, X_0ij = 0, X_Tij = PN), ANS)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = ANS, X_0ij = 0, X_Tij = PN) %>% unlist() %>% unique(), ANS)
   # Case 2
-  expect_equal(Zij(v_0i1 = ANS, v_Ti1 = 0, X_0ij = PN, X_Tij = 0), -ANS)
+  expect_equal(Zij(v_0i1 = ANS, v_Ti1 = 0, X_0ij = PN, X_Tij = 0) %>% unlist() %>% unique(), -ANS)
   # Case 3
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = PN, X_0ij = PN, X_Tij = PN), 0)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = PN, X_0ij = PN, X_Tij = PN) %>% unlist() %>% unique(), 0)
   # Case 4
-  expect_equal(Zij(v_0i1 = PN, v_Ti1 = 0, X_0ij = PN, X_Tij = PN), 0)
+  expect_equal(Zij(v_0i1 = PN, v_Ti1 = 0, X_0ij = PN, X_Tij = PN) %>% unlist() %>% unique(), 0)
   # Case 5
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = PN, X_Tij = PN), 0)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = PN, X_Tij = PN) %>% unlist() %>% unique(), 0)
   # Case 6
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = 0, X_Tij = 0), 0)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = 0, X_Tij = 0) %>% unlist() %>% unique(), 0)
   # Case 7
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = PN, X_Tij = 0), 0)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = PN, X_Tij = 0) %>% unlist() %>% unique(), 0)
   # Case 8
-  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = 0, X_Tij = PN), 0)
+  expect_equal(Zij(v_0i1 = 0, v_Ti1 = 0, X_0ij = 0, X_Tij = PN) %>% unlist() %>% unique(), 0)
 
   simple <- create_simple_LMDI()
 
   X_0 <- simple$X[[1]]
   X_T <- simple$X[[2]]
-  expect_equal(Zij(1, 1, X_0 = X_0, X_T = X_T), 50.47438029)
-  expect_equal(Zij(1, 2, X_0 = X_0, X_T = X_T), -25.23719014)
-  expect_equal(Zij(1, 3, X_0 = X_0, X_T = X_T), 14.76280986)
-  expect_equal(Zij(2, 1, X_0 = X_0, X_T = X_T), 19.31568569)
-  expect_equal(Zij(2, 2, X_0 = X_0, X_T = X_T), 15.78206435)
-  expect_equal(Zij(2, 3, X_0 = X_0, X_T = X_T), 24.90224996)
+
+  # Values tested below come from data-raw/LMDI_testing.xslx
+  expect_equal(Zij(1, 1, X_0 = X_0, X_T = X_T)$Z_I, 50.47438029)
+  expect_equal(Zij(1, 2, X_0 = X_0, X_T = X_T)$Z_I, -25.23719014)
+  expect_equal(Zij(1, 3, X_0 = X_0, X_T = X_T)$Z_I, 14.76280986)
+  expect_equal(Zij(2, 1, X_0 = X_0, X_T = X_T)$Z_I, 19.31568569)
+  expect_equal(Zij(2, 2, X_0 = X_0, X_T = X_T)$Z_I, 15.78206435)
+  expect_equal(Zij(2, 3, X_0 = X_0, X_T = X_T)$Z_I, 24.90224996)
+
+  expect_equal(Zij(1, 1, X_0 = X_0, X_T = X_T)$Z_II, 49.65937274)
+  expect_equal(Zij(1, 2, X_0 = X_0, X_T = X_T)$Z_II, -24.82968637)
+  expect_equal(Zij(1, 3, X_0 = X_0, X_T = X_T)$Z_II, 14.52443543)
+  expect_equal(Zij(2, 1, X_0 = X_0, X_T = X_T)$Z_II, 19.52361203)
+  expect_equal(Zij(2, 2, X_0 = X_0, X_T = X_T)$Z_II, 15.95195254)
+  expect_equal(Zij(2, 3, X_0 = X_0, X_T = X_T)$Z_II, 25.17031363)
 })
 
 test_that("Z_byname works as expected", {
@@ -48,22 +57,41 @@ test_that("Z_byname works as expected", {
   X_T <- simple$X[[2]]
   X_0 <- simple$X[[1]]
 
-  Z_1 <- matrix(c(50.47438029, -25.23719014, 14.76280986,
-                  19.31568569, 15.78206435, 24.90224996), byrow = TRUE, nrow = 2, ncol = 3,
-                dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+  # Values tested below come from data-raw/LMDI_testing.xslx
+  ZI_1 <- matrix(c(50.47438029, -25.23719014, 14.76280986,
+                   19.31568569, 15.78206435, 24.90224996), byrow = TRUE, nrow = 2, ncol = 3,
+                 dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
     matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
-  Z_2 <- matrix(c(42.96021467, -56.79031473, 17.83010006,
-                  0, 22.47128816, 32.52871184), byrow = TRUE, nrow = 2, ncol = 3,
-                dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+  ZI_2 <- matrix(c(42.96021467, -56.79031473, 17.83010006,
+                   0, 22.47128816, 32.52871184), byrow = TRUE, nrow = 2, ncol = 3,
+                 dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
     matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
-  Z_3 <- matrix(c(12.6549815, -39.30996299, 12.6549815,
-                  41.35566084, 30.28867832, 41.35566084), byrow = TRUE, nrow = 2, ncol = 3,
-                dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+  ZI_3 <- matrix(c(12.6549815, -39.30996299, 12.6549815,
+                   41.35566084, 30.28867832, 41.35566084), byrow = TRUE, nrow = 2, ncol = 3,
+                 dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
     matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
 
-  expect_equal(Z_byname(X_0 = X_0, X_T = X_T), Z_1)
-  expect_equal(Z_byname(X_0 = simple$X[1:3], X_T = simple$X[2:4]),
-               list(Z_1, Z_2, Z_3))
+  ZII_1 <- matrix(c(49.65937274, -24.82968637, 14.52443543,
+                    19.52361203, 15.95195254, 25.17031363), byrow = TRUE, nrow = 2, ncol = 3,
+                  dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+    matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
+  ZII_2 <- matrix(c(43.25676087, -57.18232749, 17.95317786,
+                    0, 22.46000707, 32.51238169), byrow = TRUE, nrow = 2, ncol = 3,
+                  dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+    matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
+  ZII_3 <- matrix(c(12.96920685, -40.28603609, 12.96920685,
+                    41.48288344, 30.38185551,	41.48288344), byrow = TRUE, nrow = 2, ncol = 3,
+                  dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+    matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
+
+
+  expect_equal(Z_byname(X_0 = X_0, X_T = X_T)$Z_I, ZI_1)
+  expect_equal(Z_byname(X_0 = X_0, X_T = X_T)$Z_II, ZII_1)
+  expect_equal(purrr::map(Z_byname(X_0 = simple$X[1:3], X_T = simple$X[2:4]), "Z_I"),
+               list(ZI_1, ZI_2, ZI_3))
+  expect_equal(purrr::map(Z_byname(X_0 = simple$X[1:3], X_T = simple$X[2:4]), "Z_II"),
+               list(ZII_1, ZII_2, ZII_3))
+
   # Now try in the context of a data frame.
   simple2 <- simple %>%
     dplyr::mutate(
@@ -76,7 +104,8 @@ test_that("Z_byname works as expected", {
     dplyr::mutate(
       Z = Z_byname(X_0 = X_0, X_T = X_T)
     )
-  expect_equal(simple2$Z, list(Z_1, Z_2, Z_3, Z_1, Z_2, Z_3))
+  expect_equal(purrr::map(simple2$Z, "Z_I"), list(ZI_1, ZI_2, ZI_3, ZI_1, ZI_2, ZI_3))
+  expect_equal(purrr::map(simple2$Z, "Z_II"), list(ZII_1, ZII_2, ZII_3, ZII_1, ZII_2, ZII_3))
 
   # Try with some degenerate values in the X matrix.
   # When a 0 is present, the row product is zero, making the logarithms blow up.
@@ -97,11 +126,17 @@ test_that("Z_byname works as expected", {
   # However, with X_0_11 = 0, we also get v_0_11 = 0.
   # For Z_11, we have Case 0, and Z_11 = v_T_11 = 60.
   # For Z_12 and Z_13, we have Case 3, and both are 0.
-  Z_expected_1 <- matrix(c(60, 0, 0,
-                           19.31568569, 15.78206435, 24.90224996), byrow = TRUE, nrow = 2, ncol = 3,
-                         dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+  ZI_expected_1 <- matrix(c(60, 0, 0,
+                            19.31568569, 15.78206435, 24.90224996), byrow = TRUE, nrow = 2, ncol = 3,
+                          dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
     matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
-  expect_equal(Z_byname(X_0 = X_0_2, X_T = X_T), Z_expected_1)
+  ZII_expected_1 <- matrix(c(60, 0, 0,
+                             # VALUES BELOW COME FROM LMDI_testing.xlsx FILE, AND HAVE BEEN COMPUTED MANUALLY
+                             24.37368163, 19.91474794, 31.42314086), byrow = TRUE, nrow = 2, ncol = 3,
+                           dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+    matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
+  expect_equal(Z_byname(X_0 = X_0_2, X_T = X_T)$Z_I, ZI_expected_1)
+  expect_equal(Z_byname(X_0 = X_0_2, X_T = X_T)$Z_II, ZII_expected_1)
 
   X_T_2 <- X_T
   X_T_2[[2, 3]] <- 0
@@ -109,11 +144,16 @@ test_that("Z_byname works as expected", {
   # However, with X_T_23 = 0, we also get v_T_21 = 0.
   # For Z_21 and Z_22, we have Case 4, and both are 0.
   # For Z_23, we have Case 2, and we obtain Z_23 = -v_0_21 = -60.
-  Z_expected_2 <- matrix(c(50.47438029, -25.23719014, 14.76280986,
-                           0, 0, -60), byrow = TRUE, nrow = 2, ncol = 3,
-                         dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+  ZI_expected_2 <- matrix(c(50.47438029, -25.23719014, 14.76280986,
+                            0, 0, -60), byrow = TRUE, nrow = 2, ncol = 3,
+                          dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
     matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
-  expect_equal(Z_byname(X_0 = X_0, X_T = X_T_2), Z_expected_2)
+  ZII_expected_2 <- matrix(c(96.37683359, -48.18841679,	28.18841679,
+                             0, 0, -60), byrow = TRUE, nrow = 2, ncol = 3,
+                           dimnames = list(c("subsubcat 1", "subsubcat 2"), c("factor 1", "factor 2", "factor 3"))) %>%
+    matsbyname::setrowtype("subsubcat") %>% matsbyname::setcoltype("factor")
+  expect_equal(Z_byname(X_0 = X_0, X_T = X_T_2)$Z_I, ZI_expected_2)
+  expect_equal(Z_byname(X_0 = X_0, X_T = X_T_2)$Z_II, ZII_expected_2)
 
 })
 
@@ -150,10 +190,14 @@ test_that("First row contains 0s and 1s", {
   D0 <- matrix(c(1, 1, 1), nrow = 3, ncol = 1,
                dimnames = list(c("factor 1", "factor 2", "factor 3"), c("subsubcat"))) %>%
     matsbyname::setrowtype("factor") %>% matsbyname::setcoltype("subsubcat")
-  expect_equal(res$dV[[1]], dV0)
-  expect_equal(res$D[[1]], D0)
-  expect_equal(res$dV_cum[[1]], dV0)
-  expect_equal(res$D_cum[[1]], D0)
+  expect_equal(res$dV_I[[1]], dV0)
+  expect_equal(res$D_I[[1]], D0)
+  expect_equal(res$dV_cum_I[[1]], dV0)
+  expect_equal(res$D_cum_I[[1]], D0)
+  expect_equal(res$dV_II[[1]], dV0)
+  expect_equal(res$D_II[[1]], D0)
+  expect_equal(res$dV_cum_II[[1]], dV0)
+  expect_equal(res$D_cum_II[[1]], D0)
 })
 
 
@@ -170,12 +214,20 @@ test_that("fillrow option works as expected on Z_byname", {
                 dimnames = list("KE - Fans", dn[[2]])) %>%
     matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors")
   # Z1 should be a 2-row matrix formed by assuming small numbers for all of the missing values.
-  Z1 <- Z_byname(X_0 = X_0, X_T = X_T)
-  expect_equal(nrow(Z1), 2)
-  expect_equal(rownames(Z1), c("HTH.600.C - Electric heaters", "KE - Fans"))
-  expect_equal(Z1, matrix(c(-2.185092, -1.450439688, -1.527733412, -1.252513979,
-                            0.011188553, 0.56076961, -0.479535332, -0.005095744),
-                          byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+  Z1_I <- Z_byname(X_0 = X_0, X_T = X_T)$Z_I
+  expect_equal(nrow(Z1_I), 2)
+  expect_equal(rownames(Z1_I), c("HTH.600.C - Electric heaters", "KE - Fans"))
+  Z1_II <- Z_byname(X_0 = X_0, X_T = X_T)$Z_II
+  expect_equal(nrow(Z1_II), 2)
+  expect_equal(rownames(Z1_II), c("HTH.600.C - Electric heaters", "KE - Fans"))
+  expect_equal(Z1_I, matrix(c(-2.185092, -1.450439688, -1.527733412, -1.252513979,
+                              0.011188553, 0.56076961, -0.479535332, -0.005095744),
+                            byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+                 matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
+               tolerance = 1e-6)
+  expect_equal(Z1_II, matrix(c(-2.22691886, -1.47820389, -1.55697716,	-1.27648950,
+                               0.02692330, 1.34939442, -1.15391827,	-0.01226202),
+                             byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
                  matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
                tolerance = 1e-6)
   # Now try with a fillrow argument.
@@ -186,20 +238,32 @@ test_that("fillrow option works as expected on Z_byname", {
   # In GH, HTH.600.C was present in 2003 but disappeared in 2004 due to
   # shutdown of the VALCO smelters.
   fr <- matrix(c(42, 42, 42, 0), nrow = 1, ncol = 4,
-                    dimnames = list("row", c("E.ktoe", "eta_ij", "phi_i", "phi_ij"))) %>%
+               dimnames = list("row", c("E.ktoe", "eta_ij", "phi_i", "phi_ij"))) %>%
     matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors")
-  Z2 <- Z_byname(X_0 = X_0, X_T = X_T, fillrow = fr)
-  expect_equal(Z2, matrix(c(0, 0, 0, -6.415779079,
-                            0.011188553, 0.56076961, -0.479535332, -0.005095744),
-                          byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+  Z2_I <- Z_byname(X_0 = X_0, X_T = X_T, fillrow = fr)$Z_I
+  Z2_II <- Z_byname(X_0 = X_0, X_T = X_T, fillrow = fr)$Z_II
+  expect_equal(Z2_I, matrix(c(0, 0, 0, -6.415779079,
+                              0.011188553, 0.56076961, -0.479535332, -0.005095744),
+                            byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+                 matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
+               tolerance = 1e-6)
+  expect_equal(Z2_II, matrix(c(0, 0, 0, -6.41577908,
+                               0.02738821, 1.37269571, -1.17384409,	-0.01247376),
+                             byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
                  matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
                tolerance = 1e-6)
   # If we switch the order of X_0 and X_T, we kick to case 1 of of Table 2, p. 492 in Ang et al. 1998.
   # These conditions are what you find when an energy type turns appears in a subsequent year.
-  Z3 <- Z_byname(X_0 = X_T, X_T = X_0, fillrow = fr)
-  expect_equal(Z3, matrix(c(0, 0, 0, 6.415779079,
-                            -0.011188553, -0.56076961, 0.479535332, 0.005095744),
-                          byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+  Z3_I <- Z_byname(X_0 = X_T, X_T = X_0, fillrow = fr)$Z_I
+  Z3_II <- Z_byname(X_0 = X_T, X_T = X_0, fillrow = fr)$Z_II
+  expect_equal(Z3_I, matrix(c(0, 0, 0, 6.415779079,
+                              -0.011188553, -0.56076961, 0.479535332, 0.005095744),
+                            byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
+                 matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
+               tolerance = 1e-6)
+  expect_equal(Z3_II, matrix(c(0, 0, 0,	6.41577908,
+                               -0.02738822,	-1.37269571, 1.17384409, 0.01247376),
+                             byrow = TRUE, nrow = 2, ncol = 4, dimnames = dn) %>%
                  matsbyname::setrowtype("categories") %>% matsbyname::setcoltype("factors"),
                tolerance = 1e-6)
 
@@ -210,40 +274,59 @@ test_that("fillrow option works as expected on Z_byname", {
   res1 <- lmdi(DF1, time = "Year", X = "X")
   expect_equal(res1$dV_agg[[1]], 0)
   expect_equal(res1$dV_agg[[2]], -6.328451992, tolerance = 1e-6)
-  expect_equal(res1$dV[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res1$dV_I[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
-  expect_equal(res1$dV[[2]], matrix(c(-2.173903446, -0.889670079, -2.007268743, -1.257609724),
-                                   nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res1$dV_I[[2]], matrix(c(-2.173903446, -0.889670079, -2.007268743, -1.257609724),
+                                      nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"),
                tolerance = 1e-6)
-
-  expect_equal(res1$D_agg[[1]], 1)
-  expect_equal(res1$D_agg[[2]], 0.2135822730663597)
-  expect_equal(res1$D[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res1$dV_II[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
-  expect_equal(res1$D[[2]], matrix(c(0.588433187, 0.804912278, 0.612844653, 0.7358158),
-                                  nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res1$dV_II[[2]], matrix(c(-2.19999555, -0.12880948, -2.71089544, -1.28875152),
+                                       nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"),
+               tolerance = 1e-6)
+  expect_equal(res1$D_agg[[1]], 1)
+  expect_equal(res1$D_agg[[2]], 0.213582281)
+  expect_equal(res1$D_I[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res1$D_I[[2]], matrix(c(0.588433187, 0.804912278, 0.612844653, 0.7358158),
+                                     nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res1$D_I[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res1$D_II[[2]], matrix(c(0.58469983,	0.96906733,	0.51618853,	0.73024729),
+                                      nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
 
   # Now using a fillrow.
   DF2 <- data.frame(Year = c(2003, 2004))
   DF2$X <- list(X_0, X_T)
-  res2 <- lmdi(DF2, time = "Year", X = "X", fillrow = list(fr))
+  expect_warning(res2 <- lmdi(DF2, time = "Year", X = "X", fillrow = list(fr)))
   expect_equal(res2$dV_agg[[1]], 0)
   expect_equal(res2$dV_agg[[2]], -6.328451992, tolerance = 1e-6)
-  expect_equal(res2$dV[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res2$dV_I[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
-  expect_equal(res2$dV[[2]], matrix(c(0.011188553, 0.56076961, -0.479535332, -6.420874823),
-                                   nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res2$dV_I[[2]], matrix(c(0.011188553, 0.56076961, -0.479535332, -6.420874823),
+                                      nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"),
                tolerance = 1e-6)
-
-  expect_equal(res2$D_agg[[1]], 1)
-  expect_equal(res2$D_agg[[2]], 0.2135822730663597)
-  expect_equal(res2$D[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res2$dV_II[[1]], matrix(0, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
-  expect_equal(res2$D[[2]], matrix(c(1.002733012, 1.146589093, 0.889606884, 0.208820902),
-                                  nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+  expect_equal(res2$dV_II[[2]], matrix(c(0.02738822, 1.37269571, -1.17384409, -6.42825283),
+                                       nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"),
+               tolerance = 1e-6)
+  expect_equal(res2$D_agg[[1]], 1)
+  expect_equal(res2$D_agg[[2]], 0.213582281)
+  expect_equal(res2$D_I[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res2$D_I[[2]], matrix(c(1.002733012, 1.146589093, 0.889606884, 0.208820902),
+                                     nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res2$D_II[[1]], matrix(1, nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
+                 matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
+  expect_equal(res2$D_II[[2]], matrix(c(1.00670332, 1.39772932,	0.75100568,	0.20844541),
+                                      nrow = 4, ncol = 1, dimnames = list(dn[[2]], "categories")) %>%
                  matsbyname::setrowtype("factors") %>% matsbyname::setcoltype("categories"))
 })
-

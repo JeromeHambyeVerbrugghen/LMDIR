@@ -46,8 +46,13 @@ Default is "\code{dV}".}
 Default is "\code{D}".}
 }
 \value{
-a data frame containing several columns.
+a data frame containing several columns, including:
+* \code{Z_I}, \code{Z_II}: The decomposed Z matrices for weight types I and II.
+* \code{dV_I}, \code{dV_II}: The additive change in V calculated from Z_I and Z_II.
+* \code{D_I}, \code{D_II}: The multiplicative changes in V calculated from Z_I and Z_II.
+* \code{dV_cum_I}, \code{dV_cum_II}, \code{D_cum_I}, \code{D_cum_II}: The cumulative sums and products.
 }
 \description{
 Performs log-mean divisia index decomposition analysis on a suitably-formatted data frame.
+The results are provided for two weight types, LMDI-I and LMDI-II, suffixed with \verb{_I} and \verb{_II}.
 }

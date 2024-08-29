@@ -49,7 +49,7 @@
 #' @param fillrow a row vector of type `matrix` with column names identical
 #'                to `X_0` and `X_T`. (See details.)
 #'
-#' @return A `Z` matrix.
+#' @return A `Z` list of matrices for LMDI-I and LMDI-II weights.
 #'
 #' @export
 #'
@@ -66,7 +66,7 @@ Z_byname <- function(X_0, X_T, fillrow = NULL){
       # Factorizing changes in energy and environmental indicators through decomposition,
       # Energy, Volume 23, Number 6, pp. 489-495.
       fillrow <- matrix(1e-10, nrow = 1, ncol = ncol(X_0),
-                         dimnames = list("row", colnames(X_0))) %>%
+                        dimnames = list("row", colnames(X_0))) %>%
         matsbyname::setrowtype(matsbyname::rowtype(X_0)) %>% matsbyname::setcoltype(matsbyname::coltype(X_0))
     }
     # Complete the matrices relative to one another, using fillrow.
@@ -81,22 +81,31 @@ Z_byname <- function(X_0, X_T, fillrow = NULL){
     # Ensure that this is so!
     stopifnot(matsbyname::samestructure_byname(X_0_comp_sort, X_T_comp_sort))
 
-    # Create an empty Z matrix.
-    # The empty Z is filled with default entries (NA).
-    Z <- matrix(nrow = nrow(X_0_comp_sort), ncol = ncol(X_0_comp_sort)) %>%
+    # Create empty Z matrices for each weight type (LMDI-I and -II).
+    # The empty Z are filled with default entries (NA).
+    Z_I <- matrix(nrow = nrow(X_0_comp_sort), ncol = ncol(X_0_comp_sort)) %>%
       matsbyname::setrownames_byname(rownames(X_0_comp_sort)) %>% matsbyname::setcolnames_byname(colnames(X_0_comp_sort)) %>%
       matsbyname::setrowtype(matsbyname::rowtype(X_0_comp_sort)) %>% matsbyname::setcoltype(matsbyname::coltype(X_0_comp_sort))
+    Z_II <- Z_I
+
     # Use an old-fashioned for loop to fill all elements of the Z matrix
-    for (i in 1:nrow(Z)) {
-      for (j in 1:ncol(Z)) {
-        Z[i, j] <- Zij(i = i, j = j, X_0 = X_0_comp_sort, X_T = X_T_comp_sort)
+    for (i in 1:nrow(Z_I)) {
+      for (j in 1:ncol(Z_I)) {
+        # Call Zij() to get both Z_I and Z_II values
+        Zij_res <- Zij(i = i, j = j, X_0 = X_0_comp_sort, X_T = X_T_comp_sort)
+        if (!is.list(Zij_res) || !all(c("Z_I", "Z_II") %in% names(Zij_res))) {
+          stop(paste("Zij() did not return a valid list for i =", i, "j =", j))
+        }
+        # Assign the results to the respective matrices
+        Z_I[i, j] <- Zij_res$Z_I
+        Z_II[i, j] <- Zij_res$Z_II
       }
     }
-    return(Z)
+    return(list(Z_I = Z_I, Z_II = Z_II))
   }
 
   matsbyname::binaryapply_byname(Z_func, a = X_0, b = X_T,
-                     .FUNdots = list(fillrow = fillrow), match_type = "all", .organize = FALSE)
+                                 .FUNdots = list(fillrow = fillrow), match_type = "all", .organize = FALSE)
 }
 
 #' Calculate element `Z_i,j`
@@ -112,22 +121,32 @@ Z_byname <- function(X_0, X_T, fillrow = NULL){
 #'
 #' Arguments `i`, `j`, `X_0`, and `X_T` are optional.
 #' If they are not specified,
-#' arguments `v_0i1`, `v_Ti1`, `X_0ij`, and `X_Tij`
+#' arguments `v_0`, `v_T`, `V_0`, `V_T`, `v_0i1`, `v_Ti1`, `X_0ij`, and `X_Tij`
 #' must be given.
 #'
 #' @param i optional row index for `X_0` and `X_T`.
 #' @param j optional column index for `X_0` and `X_T`.
 #' @param X_0 optional sub-sector by factor matrix for time 0.
 #' @param X_T optional sub-sector by factor matrix for time T.
-#' @param v_0i1 the i,1th element of the `v_0` column vector. (v_0 is formed from the row products of the `X_0` matrix.)
-#' @param v_Ti1 the i,1th element of the `v_T` column vector. (v_T is formed from the row products of the `X_T` matrix.)
+#' @param v_0 the column vector formed from the row products of the `X_0` matrix.
+#' @param v_T the column vector formed from the row products of the `X_T` matrix.
+#' @param V_0 the column sum of the `v_0` column vector.
+#' @param V_T the column sum of the `v_T` column vector.
+#' @param v_0i1 the i,1th element of the `v_0` column vector.
+#' @param v_Ti1 the i,1th element of the `v_T` column vector.
 #' @param X_0ij the i,jth element of the `X_0` matrix
 #' @param X_Tij the i,jth element of the `X_T` matrix
 #'
-#' @return the Z value corresponding to the `v_0i1`, `v_Ti1`, `X_0ij`, and `X_Tij` values
+#' @return the `Z_I_ij` the LMDI-I value corresponding to the `v_0i1`, `v_Ti1`, `X_0ij`, and `X_Tij` values and the
+#' `Z_II_ij` the LMDI-II Z value corresponding to the `v_0`, `v_T`, `V_0`, `V_T`, `v_0i1`, `v_Ti1`, `X_0ij`, and
+#' `V_Tij` values for row `i` and column `j`.
 #'
 #' @export
 Zij <- function(i = NULL, j = NULL, X_0 = NULL, X_T = NULL,
+                v_0 = matsbyname::rowprods_byname(X_0)[, 1],
+                v_T = matsbyname::rowprods_byname(X_T)[, 1],
+                V_0 = matsbyname::colsums_byname(matsbyname::rowprods_byname(X_0))[, 1],
+                V_T = matsbyname::colsums_byname(matsbyname::rowprods_byname(X_T))[, 1],
                 v_0i1 = matsbyname::rowprods_byname(X_0)[i, 1],
                 v_Ti1 = matsbyname::rowprods_byname(X_T)[i, 1],
                 X_0ij = X_0[i, j],
@@ -139,39 +158,65 @@ Zij <- function(i = NULL, j = NULL, X_0 = NULL, X_T = NULL,
   # Energy, Volume 23, Number 6, pp. 489-495.
   if (v_0i1 == 0 & v_Ti1 > 0 & X_0ij == 0 & X_Tij > 0) {
     # Case 1
-    return(v_Ti1)
+    Z_I_ij <- v_Ti1
+    Z_II_ij <- v_Ti1
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 > 0 & v_Ti1 == 0 & X_0ij > 0 & X_Tij == 0) {
     # Case 2
-    return(-v_0i1)
+    Z_I_ij <- -v_0i1
+    Z_II_ij <- -v_0i1
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 == 0 & v_Ti1 > 0 & X_0ij > 0 & X_Tij > 0) {
     # Case 3
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 > 0 & v_Ti1 == 0 & X_0ij > 0 & X_Tij > 0) {
     # Case 4
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 == 0 & v_Ti1 == 0 & X_0ij > 0 & X_Tij > 0) {
     # Case 5
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 == 0 & v_Ti1 == 0 & X_0ij == 0 & X_Tij == 0) {
     # Case 6
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 == 0 & v_Ti1 == 0 & X_0ij > 0 & X_Tij == 0) {
     # Case 7
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 == 0 & v_Ti1 == 0 & X_0ij == 0 & X_Tij > 0) {
     # Case 8
-    return(0)
+    Z_I_ij <- 0
+    Z_II_ij <- 0
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
 
   } else if (v_0i1 > 0 & v_Ti1 > 0 & X_0ij > 0 & X_Tij > 0) {
-    # This is the non-degenerate case
-    return(matsbyname::logmean(v_Ti1, v_0i1) * log(X_Tij / X_0ij))
+    # This is the non-degenerate case with LMDI-I weight type...
+    Z_I_ij <- matsbyname::logmean(v_Ti1, v_0i1) * log(X_Tij / X_0ij)
+    # ... and LMDI-II weight type
+    Z_II_ij <- (
+      matsbyname::logmean((v_Ti1/V_T), (v_0i1/V_0)) *
+        matsbyname::logmean(V_T, V_0) /
+        sum(
+          matsbyname::logarithmicmean_byname((v_T/as.numeric(V_T)), (v_0/as.numeric(V_0)))) *
+        log(X_Tij / X_0ij)
+    )
+    return(list(Z_I = Z_I_ij, Z_II = Z_II_ij))
   }
   # We should never get here.
   stop("Unknown conditions for v_0i1, v_Ti1, X_0ij, and X_Tij in Zij")
