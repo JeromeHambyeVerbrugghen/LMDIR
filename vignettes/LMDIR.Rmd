@@ -493,7 +493,7 @@ of [Ang et al. [-@Ang:1998]](https://doi.org/10.1016/s0360-5442(98)00016-4).)
 ```{r}
 GHlmdi %>% 
   filter(Year == 2004) %>% 
-  extract2("Z_I") %>% 
+  extract2("Z") %>% 
   extract2(1) %>%
   prettifyXZ()
 ```
@@ -502,14 +502,14 @@ GHlmdi %>%
 ### Presentation of results
 
 The `GHlmdi` object contains everything needed to present the results. 
-The focus here is on the ratioed aggregate (`D_agg_cum`) and disaggregate (`D_cum_I`)
+The focus here is on the ratioed aggregate (`D_agg_cum`) and disaggregate (`D_cum`)
 factors that affect changes in useful exergy delivered to the economy.
 So we first need to expand the data from matrices to tidy format and
 select the desired columns.
 
 ```{r}
 GHlmdi_tidy <- GHlmdi %>% 
-  select(Country, Year, D_agg_cum, D_cum_I) %>% 
+  select(Country, Year, D_agg_cum, D_cum) %>% 
   gather(key = matnames, value = matvals, -Country, -Year) %>% 
   expand_to_tidy() %>% 
   select(-colnames, -rowtypes, -coltypes)

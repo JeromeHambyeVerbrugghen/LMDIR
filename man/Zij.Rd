@@ -9,6 +9,7 @@ Zij(
   j = NULL,
   X_0 = NULL,
   X_T = NULL,
+  weights = c("LMDI-I", "LMDI-II"),
   v_0 = matsbyname::rowprods_byname(X_0)[, 1],
   v_T = matsbyname::rowprods_byname(X_T)[, 1],
   V_0 = matsbyname::colsums_byname(matsbyname::rowprods_byname(X_0))[, 1],
@@ -28,13 +29,16 @@ Zij(
 
 \item{X_T}{optional sub-sector by factor matrix for time T.}
 
-\item{v_0}{the column vector formed from the row products of the \code{X_0} matrix.}
+\item{weights}{the name of the weights type chosen for the LMDI calculations.
+\code{weights} should be one of "LMDI-I" or "LMDI-II". Default is "LMDI-I".}
 
-\item{v_T}{the column vector formed from the row products of the \code{X_T} matrix.}
+\item{v_0}{the column vector formed from the row products of the \code{X_0} matrix (only necessary for LMDI-II weights).}
 
-\item{V_0}{the column sum of the \code{v_0} column vector.}
+\item{v_T}{the column vector formed from the row products of the \code{X_T} matrix (only necessary for LMDI-II weights).}
 
-\item{V_T}{the column sum of the \code{v_T} column vector.}
+\item{V_0}{the column sum of the \code{v_0} column vector (only necessary for LMDI-II weights).}
+
+\item{V_T}{the column sum of the \code{v_T} column vector (only necessary for LMDI-II weights).}
 
 \item{v_0i1}{the i,1th element of the \code{v_0} column vector.}
 

@@ -16,6 +16,8 @@
 #'        Default is "`X`".
 #' @param fillrow a row vector of type `matrix` passed to [Z_byname()].
 #'        (See [Z_byname()] for details.)
+#' @param weights the name of the weights type chosen for the LMDI calculations.
+#'        `weights` should be one of "LMDI-I" or "LMDI-II". Default is "LMDI-I".
 #' @param V the name for the `V` output column (a string).
 #'        Default is "`V`".
 #' @param Z the name for the `Z` output column (a string).
@@ -26,16 +28,20 @@
 #'        Default is "`D`".
 #'
 #' @return a data frame containing several columns, including:
-#'         * `Z_I`, `Z_II`: The decomposed Z matrices for weight types I and II.
-#'         * `dV_I`, `dV_II`: The additive change in V calculated from Z_I and Z_II.
-#'         * `D_I`, `D_II`: The multiplicative changes in V calculated from Z_I and Z_II.
-#'         * `dV_cum_I`, `dV_cum_II`, `D_cum_I`, `D_cum_II`: The cumulative sums and products.
+#'         * `Z`: The decomposed Z matrix.
+#'         * `dV`: The additive change in V calculated from Z.
+#'         * `D`: The multiplicative changes in V calculated from Z.
+#'         * `dV_agg` and `D_agg`; The aggregate changes.
+#'         * `dV_cum` and `D_cum`: The cumulative sums and products.
 #'
 #' @export
 #'
 lmdi <- function(.lmdidata, time = "Year", X = "X", fillrow = NULL,
+                 weights = c("LMDI-I", "LMDI-II"),
                  # Output columns
                  V = "V", Z = "Z", deltaV = "dV", D = "D"){
+
+  weights <- match.arg(weights, choices = c("LMDI-I", "LMDI-II"))
 
   # Establish names for some intermediate columns.
   v_colname <- ".v"
@@ -76,16 +82,29 @@ lmdi <- function(.lmdidata, time = "Year", X = "X", fillrow = NULL,
   XvV0T <- create0Tcolumns(XvV, time_colname = time,
                            X_colname = X, v_colname = v_colname, V_colname = V,
                            zero_suffix = zero_suffix, T_suffix = T_suffix)
+
   # Do year-by-year LMDI calcs.
-  dVD <- XvV0T %>%
-    dplyr::mutate(
-      !!as.name(LV_colname) := matsbyname::logarithmicmean_byname(!!as.name(VT_colname), !!as.name(V0_colname)),
-      !!as.name(Z) := Z_byname(X_0 = !!as.name(X0_colname), X_T = !!as.name(XT_colname),
-                               fillrow = fillrow),
-      !!as.name(deltaV) := matsbyname::colsums_byname(!!as.name(Z)) %>% matsbyname::transpose_byname(),
-      !!as.name(D) := matsbyname::quotient_byname(!!as.name(deltaV), !!as.name(LV_colname)) %>%
-        matsbyname::exp_byname()
-    )
+  if (weights == "LMDI-I") {
+    dVD <- XvV0T %>%
+      dplyr::mutate(
+        !!as.name(LV_colname) := matsbyname::logarithmicmean_byname(!!as.name(VT_colname), !!as.name(V0_colname)),
+        !!as.name(Z) := Z_byname(X_0 = !!as.name(X0_colname), X_T = !!as.name(XT_colname),
+                                 fillrow = fillrow, weights = weights),
+        !!as.name(deltaV) := matsbyname::colsums_byname(!!as.name(Z)) %>% matsbyname::transpose_byname(),
+        !!as.name(D) := matsbyname::quotient_byname(!!as.name(deltaV), !!as.name(LV_colname)) %>%
+          matsbyname::exp_byname()
+      )
+  } else {
+    dVD <- XvV0T %>%
+      dplyr::mutate(
+        !!as.name(LV_colname) := matsbyname::logarithmicmean_byname(!!as.name(VT_colname), !!as.name(V0_colname)),
+        !!as.name(Z) := Z_byname(X_0 = !!as.name(X0_colname), X_T = !!as.name(XT_colname),
+                                 fillrow = fillrow, weights = weights),
+        !!as.name(deltaV) := matsbyname::colsums_byname(!!as.name(Z)) %>% matsbyname::transpose_byname(),
+        !!as.name(D) := matsbyname::quotient_byname(!!as.name(deltaV), !!as.name(LV_colname)) %>%
+          matsbyname::exp_byname()
+      )
+  }
 
   # Test to ensure that everything works as expected.
   # We can calculate deltaV and D in two ways.
@@ -139,38 +158,34 @@ lmdi <- function(.lmdidata, time = "Year", X = "X", fillrow = NULL,
     )
 
   # If these assertions pass, the calculations are internally consistent.
-  # Test if all dV_err values for Z_I are equal to zero
-  assertthat::assert_that(all(unlist(Map(f = function(err_list) {
-    all(err_list[["Z_I"]] %>% round(., 10) == 0)
-  },
-  chk[[dV_err_colname]]))), msg = "dV_raw and dV_decomp are not all identical in lmdi() with type-I weights.")
-  # Test if all D_err values for Z_I are below the threshold
-  assertthat::assert_that(all(unlist(Map(f = function(err_list) {
-    all(err_list[["Z_I"]] %>% round(., 10) == 0)
-  },
-  chk[[D_err_colname]]))), msg = "D_raw and D_decomp are not all identical in lmdi() with type-I weights.")
-
-  # Test if LMDI-II errors are greater than the threshold
-  error_threshold_dV <- 1e-1      # This is 1 decimal for the additive model
-  error_threshold_D <- 1e-3       # This is 3 decimals for the additive model
-  # Check if any dV_err values for Z_II exceed the threshold
-  exceeds_threshold <- any(unlist(Map(f = function(err_list) {
-    max(abs(err_list[["Z_II"]])) >= error_threshold_dV }, chk[[dV_err_colname]])))
-  # If the threshold is exceeded, issue a warning
-  if (exceeds_threshold) { warning(paste("Some dV_err values for type-II weights exceed the threshold of",
-                                         error_threshold_dV,
-                                         ". dV_raw and dV_decomp are not all identical in lmdi().",
-                                         "This is due to LMDI-II not being consistent in aggregation,",
-                                         "as opposed to LMDI-I. Slight differences are thus observed in this situation.")) }
-  # Check if any D_err values for Z_II exceed the threshold
-  exceeds_threshold <- any(unlist(Map(f = function(err_list) {
-    max(abs(err_list[["Z_II"]])) >= error_threshold_D },  chk[[D_err_colname]])))
-  # If the threshold is exceeded, issue a warning
-  if (exceeds_threshold) { warning(paste("Some D_err values for type-II weights exceed the threshold of",
-                                         error_threshold_D,
-                                         ". D_raw and D_decomp are not all identical in lmdi().",
-                                         "This is due to LMDI-II not being consistent in aggregation,",
-                                         "as opposed to LMDI-I. Slight differences are thus observed in this situation.")) }
+  if (weights == "LMDI-I") {
+    assertthat::assert_that(all(Map(f = all.equal, chk[[dV_raw_colname]], chk[[dV_decomp_colname]]) %>% as.logical()),
+                            msg = "dV_raw and dV_decomp are not all identical in lmdi()")
+    assertthat::assert_that(all(Map(f = all.equal, chk[[D_raw_colname]], chk[[D_decomp_colname]]) %>% as.logical()),
+                            msg = "D_raw and D_decomp are not all identical in lmdi()")
+  } else {
+    # Test if LMDI-II errors are greater than the threshold
+    error_threshold_dV <- 1e-1      # This is 1 decimal for the additive model
+    error_threshold_D <- 1e-3       # This is 3 decimals for the additive model
+    # Check if any dV_err values for LMDI-II weights exceed the threshold
+    exceeds_threshold_dV <- any(Map(f = function(dV_err) {
+      max(abs(dV_err)) >= error_threshold_dV }, chk[[dV_err_colname]]) %>% as.logical())
+    # If the threshold is exceeded, issue a warning
+    if (exceeds_threshold_dV) { warning(paste("Some dV_err values for type-II weights exceed the threshold of",
+                                           error_threshold_dV,
+                                           ". dV_raw and dV_decomp are not all identical in lmdi().",
+                                           "This is due to LMDI-II not being consistent in aggregation,",
+                                           "as opposed to LMDI-I. Differences are thus observed in this case.")) }
+    # Check if any D_err values for LMDI-II weights exceed the threshold
+    exceeds_threshold_D <- any(Map(f = function(D_err) {
+      max(abs(D_err)) >= error_threshold_D }, chk[[D_err_colname]]) %>% as.logical())
+    # If the threshold is exceeded, issue a warning
+    if (exceeds_threshold_D) { warning(paste("Some D_err values for type-II weights exceed the threshold of",
+                                           error_threshold_D,
+                                           ". D_raw and D_decomp are not all identical in lmdi().",
+                                           "This is due to LMDI-II not being consistent in aggregation,",
+                                           "as opposed to LMDI-I. Differences are thus observed in this case")) }
+  }
 
   cumulatives <- chk %>%
     dplyr::select(!!!dplyr::group_vars(chk), !!as.name(time), !!as.name(Z),
@@ -191,19 +206,8 @@ lmdi <- function(.lmdidata, time = "Year", X = "X", fillrow = NULL,
 
   # Now join the group_vars and Year column of .lmdidata and out by the group_vars and Year,
   # and rename output columns for each of LMDI-I and -II weight.
+  # Now join the group_vars and Year column of .lmdidata and out by the group_vars and Year.
   XvV %>%
     dplyr::select(dplyr::group_vars(XvV), dplyr::all_of(time), X, V) %>%
-    dplyr::left_join(cumulatives, by = c(dplyr::group_vars(.lmdidata), time)) %>%
-    tidyr::unnest_wider(Z, names_sep = "_") %>%
-    tidyr::unnest_wider(dV, names_sep = "_") %>%
-    tidyr::unnest_wider(D, names_sep = "_") %>%
-    tidyr::unnest_wider(dV_cum, names_sep = "_") %>%
-    tidyr::unnest_wider(D_cum, names_sep = "_") %>%
-    dplyr::rename(
-      Z_I = Z_Z_I, Z_II = Z_Z_II,
-      dV_I = dV_Z_I, dV_II = dV_Z_II,
-      D_I = D_Z_I, D_II = D_Z_II,
-      dV_cum_I = dV_cum_Z_I, dV_cum_II = dV_cum_Z_II,
-      D_cum_I = D_cum_Z_I, D_cum_II = D_cum_Z_II
-    )
+    dplyr::left_join(cumulatives, by = c(dplyr::group_vars(.lmdidata), time))
 }
